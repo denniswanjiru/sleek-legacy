@@ -1,0 +1,40 @@
+.flow {
+  display: flex;
+  justify-content: space-between;
+  height: 280px;
+
+  .card {
+    width: 49%;
+    height: 100%;
+    box-shadow: 0 -1px 12px 0 rgba(25,25,34,.12);
+    background-image: -webkit-linear-gradient(15deg, #013A6B 48%, #fff 40%);
+    position: relative;
+
+    .play {
+      position: absolute;
+      left: 48%;
+      top: 50%;
+      transform: translate3d(-50%,-50%,0);
+      background-color: #fff;
+      border: solid 1px #000;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        height: 60px;
+        width: 60px;
+      }
+
+      &--icon {
+        background-color: #fff;
+      }
+    }
+
+
+  }
+}
