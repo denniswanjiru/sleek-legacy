@@ -9,7 +9,7 @@ import Sidebar from '../Sidebar';
 import Player from '../Player';
 import Routes from '../../routes';
 import { HttpLink, InMemoryCache } from 'apollo-boost';
-import NPContext, { Consumer } from '../Contexts/NPContext';
+import PlayerContext, { Consumer } from '../Contexts/PlayerContext';
 
 const client = new ApolloClient({
    uri: 'http://localhost:5000/graphql'
@@ -19,7 +19,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <NPContext>
+        <PlayerContext>
           <Consumer>
             {(context) => (
               <React.Fragment>
@@ -37,7 +37,7 @@ export default function App() {
             )
             }
           </Consumer>
-        </NPContext>
+        </PlayerContext>
       </Router>
     </ApolloProvider>
   )
