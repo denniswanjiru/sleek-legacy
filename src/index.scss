@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700');
+
+html, body, * {
+  padding: 0;
+  margin: 0;
+  font-family: 'Titillium Web', sans-serif;
+  box-sizing: border-box;
+}
+
+.flow-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #555;
+}
+
+.drip-text {
+  color: #777;
+}
+
+.panel-header {
+  margin: 50px 0 20px 0;
+}
+
+.card {
+  height: 100%;
+  box-shadow: 0 -1px 12px 0 rgba(25,25,34,.12);
+
+  &--small {
+    width: 17.5%;
+    background-color: red;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+  }
+
+ &--large {
+   width: 48%;
+   background-color: blue;
+
+   &-square {
+    width: 23%;
+    background-color: indigo;
+   }
+ }
+}
+
+.cards-flex {
+  display: flex;
+  justify-content: space-between;
+
+  &--small{
+    height: 90px;
+  }
+
+  &--large {
+    height: 270px;
+  }
+}

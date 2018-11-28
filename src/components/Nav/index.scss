@@ -1,0 +1,19 @@
+.navbar {
+  height: 60px;
+  box-shadow: 0 1px 12px 0 rgba(25,25,34,.12);
+  background: #fff;
+  padding: 0 30px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 220px);
+  z-index: 10;
+  justify-content: space-between;
+
+  .avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,41 @@
+.sidebar {
+  background-color: #22232c;
+  width: 220px;
+  position: fixed;
+  height: 100vh;
+
+  .brand {
+    color: whitesmoke;
+    padding: 10px 20px;
+    font-size: 34px;
+  }
+
+  .links {
+    margin-top: 20px;
+    cursor: pointer;
+    list-style: none;
+
+    li {
+      padding: 10px 20px;
+
+      &:hover {
+        background: #333;
+      }
+
+      & .active {
+        border-left: none;
+      }
+
+      & a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.active {
+  border-left: solid 4px#2692b7;
+}
