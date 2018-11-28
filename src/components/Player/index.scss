@@ -4,10 +4,116 @@
   position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 80px;
+  height: 100px;
   box-shadow: 0 -1px 12px 0 rgba(25,25,34,.12);
   display: flex;
   align-items: center;
   padding: 0 30px;
   justify-content: space-between;
+
+  .sleek--player {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 600px;
+    margin-top: 20px;
+
+    .controls {
+      align-items: center;
+      width: 250px;
+      display: flex;
+      justify-content: space-between;
+
+      .play {
+        background-color: #fff;
+        border: solid 1px #000;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #eee;
+        }
+
+        &--icon {
+          background-color: #fff;
+          height: 30px;
+        }
+      }
+
+      & img {
+        height: 25px;
+      }
+
+      & img:first-child,
+      & img:last-child {
+        height: 14px;
+      }
+    }
+
+    .progress {
+       width: 100%;
+    }
+
+  }
+
+  .playing {
+    display: flex;
+    min-width: 250px;
+    max-width: 300px;
+    justify-content: space-between;
+    align-items: center;
+
+    .small--thumb {
+      height: 60px!important;
+      width: 60px!important;
+    }
+
+    .song {
+      &--title {
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+      &--artist {
+        font-weight: 400;
+        font-size: 12px;
+        color: #444;
+      }
+    }
+  }
+
+  .actions {
+    width: 250px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    > div {
+      display: flex;
+      & img {
+        height: 15px;
+        padding-left: 20px;;
+      }
+    }
+
+    > img {
+      box-sizing: initial;
+      padding-left: 50px;
+      padding-right: 10px;
+      height: 35px;
+      width: 35px;
+    }
+
+    > p {
+      font-size: 14px;
+      color: #444;
+    }
+
+  }
 }
