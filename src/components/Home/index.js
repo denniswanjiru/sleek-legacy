@@ -9,10 +9,10 @@ import Popular from '../Popular';
 import Charts from '../Charts';
 import NewRelease from '../NewRelease';
 
-export default function Home() {
+export default function Home({context}) {
   return (
     <Fragment>
-      <Flow />
+      <Flow context={context} />
       <Browse />
       <Recommends />
       <Picks />

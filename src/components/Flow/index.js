@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState , useContext, useEffect} from 'react'
 
 import play from '../../assets/icons/play.svg'
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-export default function Flow() {
+const Flow = ({ context: { context }, data }) => {
+  const [flow, setFlow] = useState([]);
+  if(data.tracks && !context.current) {
+    context.updateCurrent(data.tracks[4].streamUrl)
+  }
+
   return (
     <React.Fragment>
       <div className="panel-header">
@@ -22,3 +29,13 @@ export default function Flow() {
     </React.Fragment>
   )
 }
+
+export default graphql(gql`
+  query flowQuery {
+    tracks(filter:"uk", limit: 80) {
+      title
+      streamUrl
+    }
+  }
+`)(Flow);
+
