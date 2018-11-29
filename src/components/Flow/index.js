@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import play from '../../assets/icons/play.svg'
 import pause from '../../assets/icons/pause.svg'
@@ -11,17 +11,16 @@ const Flow = ({ context: { context }, data }) => {
     if(data.tracks && !context.playlist.name !== name) {
       context.updatePlaylist({tracks : data.tracks , name})
     }
-
-    context.togglePlaying();
   }
+
   return (
     <React.Fragment>
       <div className="panel-header">
       </div>
       <div className="flow">
         <div className="card">
-          <div className="play">
-            <img src={context.playing ? pause : play} alt="" className="play--icon" onClick={setPlaylist} />
+          <div className="play" onClick={setPlaylist}>
+            <img src={context.playing ? pause : play} alt="" className="play--icon" />
           </div>
         </div>
         <div className="card">
@@ -36,11 +35,10 @@ const Flow = ({ context: { context }, data }) => {
 
 export default graphql(gql`
   query flowQuery {
-    tracks(filter:"uk", limit: 80) {
+    tracks(filter:"Electronic", limit: 80) {
       title
       streamUrl
       thumb
     }
   }
 `)(Flow);
-
