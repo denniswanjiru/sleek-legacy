@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 
 import play from '../../assets/icons/play.svg'
+import pause from '../../assets/icons/pause.svg'
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 const Flow = ({ context: { context }, data }) => {
   const name = 'flow';
   function setPlaylist(e) {
-     if(data.tracks && !context.playlist.name !== name) {
-       context.updatePlaylist({tracks : data.tracks , name})
-      }
+    if(data.tracks && !context.playlist.name !== name) {
+      context.updatePlaylist({tracks : data.tracks , name})
+    }
+
+    context.togglePlaying();
   }
   return (
     <React.Fragment>
@@ -18,7 +21,7 @@ const Flow = ({ context: { context }, data }) => {
       <div className="flow">
         <div className="card">
           <div className="play">
-            <img src={play} alt="" className="play--icon" onClick={setPlaylist} />
+            <img src={context.playing ? pause : play} alt="" className="play--icon" onClick={setPlaylist} />
           </div>
         </div>
         <div className="card">
@@ -33,7 +36,7 @@ const Flow = ({ context: { context }, data }) => {
 
 export default graphql(gql`
   query flowQuery {
-    tracks(filter:"dua", limit: 80) {
+    tracks(filter:"uk", limit: 80) {
       title
       streamUrl
       thumb

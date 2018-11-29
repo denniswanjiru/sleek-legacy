@@ -8,26 +8,62 @@ import repeat from "../../assets/icons/repeat.svg";
 import heart from "../../assets/icons/heart.svg";
 import mix from "../../assets/icons/mix.svg";
 import volume from "../../assets/icons/volume.svg";
+import plus from "../../assets/icons/plus.svg";
+import pause from "../../assets/icons/pause.svg";
 import './index.scss';
 
 const Player = ({ context }) => {
+  const {title, thumb, streamUrl} = context.current;
 
   const [stream, setStream] = useState("");
+
+  console.log(context)
+  let artist, song;
+  if(title) {
+    [artist, song] = title.split('-');
+  }
+
+  if(stream.url) {
+     let audio = document.getElementById('playera');
+     console.log(audio);
+  }
+
+
   useEffect(() => {
-    context.current !== "" && fetch(`http://localhost:5000/${context.current}`)
+    streamUrl && fetch(`http://localhost:5000/${streamUrl}`)
     .then(res => res.json())
     .then((data) => setStream(data))
   }, [context.current])
+
+  useEffect(() => {
+    if(stream) {
+      if(context.playing) {
+        document.getElementById("playera").pause()
+      } else {
+        document.getElementById("playera").play()
+      }
+    }
+  }, [context.playing])
 
   const songEnd = (e) => {
     setStream("");
     context.playNext();
   }
+
+  const togglePlay = (e) => {
+    e.preventDefault()
+    if(context.playing) {
+      document.getElementById("playera").pause()
+    } else {
+       document.getElementById("playera").play()
+    }
+  }
+
   return(
     <section className="player">
       <div className="playing">
         <img
-          src="https://img.cdandlp.com/2017/11/imgL/118981381.jpg"
+          src={thumb}
           alt=""
           height="70"
           width="70"
@@ -35,8 +71,8 @@ const Player = ({ context }) => {
         />
 
         <div className="song">
-          <p className="song--title">Stuck in The Middle</p>
-          <p className="song--artist">Mike Posner</p>
+          <p className="song--title">{song && song.substr(0, 20)}</p>
+          <p className="song--artist">{artist && artist.substr(0, 20)}</p>
         </div>
 
         <img src={heart} alt=""/>
@@ -45,20 +81,21 @@ const Player = ({ context }) => {
         <div className="controls">
           <img src={shuffle} alt=""/>
           <img src={prev} alt=""/>
-          <div className="play">
-            <img src={play} alt="" className="play--icon" />
+          <div className="play" onClick={togglePlay}>
+            <img src={context.playing ? pause : play} alt="" className="play--icon" onClick={context.togglePlaying} />
           </div>
-          <img src={next} alt=""/>
+          <img src={next} alt="" onClick={songEnd} />
           <img src={repeat} alt=""/>
         </div>
         <progress className="progress"></progress>
 
-        {stream && <audio autoPlay onEnded={songEnd}>
+        {stream && <audio autoPlay  onEnded={songEnd} id="playera">
           <source src={ `http://localhost:5000${stream.url}`} type="audio/mpeg" />
         </audio>}
       </div>
       <div className="actions">
         <div>
+          <img src={plus} alt=""/>
           <img src={volume} alt=""/>
           <img src={mix} alt=""/>
         </div>

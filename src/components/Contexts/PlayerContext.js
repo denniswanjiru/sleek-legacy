@@ -4,10 +4,10 @@ export const { Provider, Consumer } = React.createContext();
 
 
 export default function PlayerContext({children}) {
-  const [current, setCurrent] = useState("");
+  const [current, setCurrent] = useState({});
   const [np , setNp] = useState(0);
   const [playlist, setPlayList] = useState([]);
-  const [next, setNext] = useState("");
+  const [playing, setPlaying] = useState(false);
 
 
   const updateCurrent = (current) => {
@@ -15,9 +15,11 @@ export default function PlayerContext({children}) {
   }
 
   useEffect(() => {
-    if(playlist.name) {
+    if(playlist.name){
+      // localStorage.setItem('playlist', playlist.name)
       playNext()
     }
+
   }, [playlist])
 
 
@@ -25,14 +27,24 @@ export default function PlayerContext({children}) {
     setPlayList(playlist)
   }
 
+  const togglePlaying = () => {
+    setPlaying(!playing)
+  }
+
   const playNext = () => {
-    setCurrent(playlist.tracks[np].streamUrl);
+    setCurrent(playlist.tracks[np]);
     setNp(np + 1)
   }
 
-
-
-  const context = { current, playlist,  updateCurrent, updatePlaylist, playNext };
+  const context = {
+    current,
+    playlist,
+    playing,
+    updateCurrent,
+    updatePlaylist,
+    playNext,
+    togglePlaying
+  };
 
   return (
     <Provider value={{ ...context }}>
