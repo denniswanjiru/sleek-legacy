@@ -32,7 +32,7 @@ export default function App() {
                   </div>
                   <Sidebar />
                 </div>
-                <Player context={context}/>
+                {context.playlist.name && <Player context={context}/>}
               </React.Fragment>
             )
             }
