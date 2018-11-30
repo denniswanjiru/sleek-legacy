@@ -47,6 +47,51 @@ const Player = ({ context }) => {
     context.playPrev();
   }
 
+  const progressBar = () => {
+    const player = document.getElementById("audio")
+    
+    const length = player.duration
+
+    const current_time = player.currentTime;
+
+    // calculate total length of value
+    const totalLength = calculateTotalValue(length)
+    document.getElementById("end-time").innerHTML = totalLength;
+    // calculate current value time
+    const currentTime = calculateCurrentValue(current_time);
+    document.getElementById("start-time").innerHTML = currentTime;
+
+    const progressbar = document.getElementById('progress');
+    progressbar.value = (player.currentTime / player.duration);
+    progressbar.addEventListener("click", seek);
+
+    function seek(event) {
+      const percent = event.offsetX / this.offsetWidth;
+      player.currentTime = percent * player.duration;
+      progressbar.value = percent / 100;
+    }
+
+  }
+
+  function calculateTotalValue(length) {
+    var minutes = Math.floor(length / 60),
+      seconds_int = length - minutes * 60,
+      seconds_str = seconds_int.toString(),
+      seconds = seconds_str.substr(0, 2),
+      time = minutes + ':' + seconds
+  
+    return time;
+  }
+  
+  function calculateCurrentValue(currentTime) {
+    var current_minute = parseInt(currentTime / 60) % 60,
+      current_seconds_long = currentTime % 60,
+      current_seconds = current_seconds_long.toFixed(),
+      current_time = (current_minute < 10 ? "0" + current_minute : current_minute) + ":" + (current_seconds < 10 ? "0" + current_seconds : current_seconds);
+  
+    return current_time;
+  }
+
   return(
     <section className="player">
       <div className="playing">
@@ -75,9 +120,12 @@ const Player = ({ context }) => {
           <img src={next} alt="" className="icon"  onClick={songEnd} />
           <img src={repeat} alt="" className="icon" />
         </div>
-        <progress className="progress"></progress>
-
-        {stream && <audio autoPlay  onEnded={songEnd} id="audio">
+        <div className="progress-indicator">
+          <small id="start-time" className="start-time"></small>
+            <progress className="progress"  id="progress" value="0" max="1"></progress>
+          <small  id="end-time" className="end-time"></small>
+        </div>
+        {stream && <audio autoPlay  onEnded={songEnd} id="audio" onTimeUpdate={progressBar}>
           <source src={ `http://localhost:5000${stream.url}`} type="audio/mpeg" />
         </audio>}
       </div>
