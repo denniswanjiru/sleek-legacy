@@ -1,32 +1,32 @@
-#Sleek
+# Sleek
 - A Deezer hi-fidelity clone with some borrowed ideas from spotify
 
-#Technologies
-###Frontend
+# Technologies
+### Frontend
 - React
 - React Apollo
 - React Hooks
 - React Context
 - Scss
 
-###Backend
+### Backend
 - Python
 - Redis
 - GraphQL
 - Python-graphine
 - Flask
 
-#Contributing
-###Frontnend
+# Contributing
+### Frontnend
 - Fork this repo and start you contribution
 
-###Backend
+### Backend
 - Find the backend repo here https://github.com/dwarukira/sleek
 
-#Authors
+# Authors
 - rontend -Dennis Wanjiru
 - Backend - Duncan Warukira
 
-#Acknowlegment
+# Acknowlegment
 - Deezer - https://deezer.com
 - Spotify - https://spotify.com
