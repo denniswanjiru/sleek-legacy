@@ -24,7 +24,7 @@
 - Find the backend repo here https://github.com/dwarukira/sleek
 
 # Authors
-- rontend -Dennis Wanjiru
+- Frontend - Dennis Wanjiru
 - Backend - Duncan Warukira
 
 # Acknowlegment
