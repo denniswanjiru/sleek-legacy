@@ -64,7 +64,7 @@
       justify-content: space-evenly;
       align-items: center;
       width: 100%;
-      margin-top: -20px; 
+      margin-top: -20px;
 
       .progress {
           width: 80%;
@@ -83,22 +83,19 @@
       progress::-webkit-progress-value {
         background: lightblue;
       }
-      
+
       progress::-moz-progress-bar {
         background: lightcolor;
       }
-      
+
       progress::-webkit-progress-value {
         background: #000;
       }
-      
+
       progress::-webkit-progress-bar {
         background: #ccc;
       }
-     
     }
-    
-
   }
 
   .playing {
@@ -113,16 +110,25 @@
       width: 60px!important;
     }
 
-    .song {
-      &--title {
-        font-weight: 600;
-        font-size: 15px;
-      }
+    & div{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      &--artist {
-        font-weight: 400;
-        font-size: 12px;
-        color: #444;
+      .song {
+        display: block;
+        padding: 0 20px;
+
+        &--title {
+          font-weight: 600;
+          font-size: 15px;
+        }
+
+        &--artist {
+          font-weight: 400;
+          font-size: 12px;
+          color: #444;
+        }
       }
     }
   }

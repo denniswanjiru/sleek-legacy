@@ -8,7 +8,6 @@ import Nav from '../Nav';
 import Sidebar from '../Sidebar';
 import Player from '../Player';
 import Routes from '../../routes';
-import { HttpLink, InMemoryCache } from 'apollo-boost';
 import PlayerContext, { Consumer } from '../Contexts/PlayerContext';
 
 const client = new ApolloClient({
@@ -25,7 +24,7 @@ export default function App() {
               <React.Fragment>
                 <div className="page-wrapper">
                   <div className="content">
-                    <Nav />
+                    <Nav context={context} />
                     <main className="main">
                       <Routes context={context} />
                     </main>

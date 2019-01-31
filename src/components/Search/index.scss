@@ -1,0 +1,47 @@
+.search-wrapper {
+  width: 100%;
+}
+
+@mixin spacing {
+  & div {
+    height: 20px;
+    width: 20%;
+    color: #4F4F4F;
+    font-size: 15px;
+    line-height: 20px;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  & .small {
+    width: 8%;
+  }
+}
+.card--request-table {
+  padding: 0 30px;
+  width: 80%;
+
+  & .thead {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+
+    @include spacing()
+  }
+
+  & .tbody {
+
+    & .data-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+
+      @include spacing()
+    }
+
+    & .data-row:not(:last-child) {
+      border-bottom: solid 1px #ccc;
+    }
+  }
+}

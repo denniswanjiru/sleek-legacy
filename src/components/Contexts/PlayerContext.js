@@ -1,9 +1,11 @@
-import React, { useState , useEffect} from 'react'
+import React, { useState , useEffect} from 'react';
+import { debounce } from 'lodash';
 
 export const { Provider, Consumer } = React.createContext();
 
 export default function PlayerContext({children}) {
   const [np , setNp] = useState(0);
+  const [search, setSearch] = useState({ query: "", results: [] });
   const [current, setCurrent] = useState({});
   const [playlist, setPlayList] = useState([]);
   const [playing, setPlaying] = useState(false);
@@ -14,6 +16,7 @@ export default function PlayerContext({children}) {
       togglePlaying();
       const name = localStorage.getItem('playlist')
       if(!playing) {
+        console.log(playlist)
         localStorage.setItem('playlist', playlist.name)
         triggerPlaylist()
       }
@@ -27,6 +30,15 @@ export default function PlayerContext({children}) {
       setQueue({...queue, next: 1, np, prev: -1});
     }
   }, [np]);
+
+  useEffect(() => {
+    console.log(search)
+  }, [search])
+
+  // Search
+  const searchSongs = debounce(query => {
+    setSearch({...search, query });
+  }, 1000);
 
   const updatePlaylist = (playlist) => {
     setPlayList(playlist)
@@ -59,6 +71,8 @@ export default function PlayerContext({children}) {
 
   const context = {
     current,
+    search,
+    searchSongs,
     np,
     playlist,
     playing,

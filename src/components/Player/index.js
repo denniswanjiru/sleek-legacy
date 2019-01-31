@@ -18,7 +18,7 @@ const Player = ({ context }) => {
 
   let artist, song;
   if(title) {
-    [artist, song] = title.split('-');
+    [artist, song] = title.split(' - ');
   }
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Player = ({ context }) => {
 
   const progressBar = () => {
     const player = document.getElementById("audio")
-    
+
     const length = player.duration
 
     const current_time = player.currentTime;
@@ -70,42 +70,48 @@ const Player = ({ context }) => {
       player.currentTime = percent * player.duration;
       progressbar.value = percent / 100;
     }
-
   }
 
   function calculateTotalValue(length) {
-    var minutes = Math.floor(length / 60),
+    const minutes = Math.floor(length / 60),
       seconds_int = length - minutes * 60,
       seconds_str = seconds_int.toString(),
       seconds = seconds_str.substr(0, 2),
-      time = minutes + ':' + seconds
-  
+      time = minutes + ':' + seconds;
+
     return time;
   }
-  
+
   function calculateCurrentValue(currentTime) {
-    var current_minute = parseInt(currentTime / 60) % 60,
+    const current_minute = parseInt(currentTime / 60) % 60,
       current_seconds_long = currentTime % 60,
       current_seconds = current_seconds_long.toFixed(),
       current_time = (current_minute < 10 ? "0" + current_minute : current_minute) + ":" + (current_seconds < 10 ? "0" + current_seconds : current_seconds);
-  
+
     return current_time;
+  }
+
+  const cleanString = data => {
+    const cleanup = data && data.split('(')[0].trim().substr(0, 20)
+    return cleanup && cleanup.split('[')[0].trim().substr(0, 20);
   }
 
   return(
     <section className="player">
       <div className="playing">
-        <img
-          src={thumb}
-          alt=""
-          height="70"
-          width="70"
-          className="small--thumb"
-        />
+        <div>
+          <img
+            src={thumb}
+            alt=""
+            height="70"
+            width="70"
+            className="small--thumb"
+            />
 
-        <div className="song">
-          <p className="song--title">{song && song.split('(')[0].trim().substr(0, 20)}</p>
-          <p className="song--artist">{artist && artist.substr(0, 20)}</p>
+          <div className="song">
+            <p className="song--title">{cleanString(song)}</p>
+            <p className="song--artist">{cleanString(artist)}</p>
+          </div>
         </div>
 
         <img src={heart} alt="" className="icon" />
