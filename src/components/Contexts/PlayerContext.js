@@ -57,16 +57,19 @@ export default function PlayerContext({children}) {
     setCurrent(playlist.tracks[0]);
   }
 
-  const playNext = () => {
-    setNp(np + 1)
+  const handlePlaying = playing => {
+    const next = (playing === 'next');
+    next ? setNp(np + 1) : setNp(np - 1)
     setPlaying(true)
-    setCurrent(playlist.tracks[queue.next]);
+    setCurrent(playlist.tracks[next ? queue.next : queue.prev]);
+  }
+
+  const playNext = () => {
+    handlePlaying('next')
   }
 
   const playPrev = () => {
-    setNp(np - 1)
-    setPlaying(true);
-    setCurrent(playlist.tracks[queue.prev]);
+    handlePlaying('prev')
   }
 
   const context = {
