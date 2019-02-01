@@ -5,7 +5,7 @@ export const { Provider, Consumer } = React.createContext();
 
 export default function PlayerContext({children}) {
   const [np , setNp] = useState(0);
-  const [search, setSearch] = useState({ query: "", results: [] });
+  const [search, setSearch] = useState(null);
   const [current, setCurrent] = useState({});
   const [playlist, setPlayList] = useState([]);
   const [playing, setPlaying] = useState(false);
@@ -37,7 +37,7 @@ export default function PlayerContext({children}) {
 
   // Search
   const searchSongs = debounce(query => {
-    setSearch({...search, query });
+    setSearch(query);
   }, 1000);
 
   const updatePlaylist = (playlist) => {

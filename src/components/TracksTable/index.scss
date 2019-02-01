@@ -1,0 +1,20 @@
+.small {
+  cursor: pointer;
+  img {
+   display: block
+  }
+
+  & p {
+    display: none;
+  }
+
+  &:hover {
+    img {
+      display: none;
+    }
+
+    p {
+     display: block
+    }
+  }
+}

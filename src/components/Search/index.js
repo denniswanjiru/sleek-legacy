@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { Search_QUERY } from '../../queries';
+import { SEARCH_QUERY } from '../../queries';
 import TracksTable from '../TracksTable';
 
 import './index.scss';
@@ -11,7 +11,7 @@ export default function Search({context: { context } }) {
 
   return (
     <div className="page-wrapper">
-      <Query query={Search_QUERY} variables={{ q: context.search.query }}>
+      <Query query={SEARCH_QUERY} variables={{ q: context.search }}>
         {({ loading, data, error }) => {
           if(loading) return 'Loading...'
           return (
