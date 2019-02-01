@@ -1,18 +1,15 @@
 import React from 'react'
+import PanelHeader from '../HOC/PanelHeader';
 
 export default function Charts() {
   return (
-    <div className="browse">
-      <div className="panel-header">
-        <div className="flow-text">Charts</div>
-      </div>
-
+    <PanelHeader title="Charts">
       <div className="cards-flex cards-flex--large">
         <div className="card card--large">Dance & EDM</div>
         <div className="">
-        Tracks
+          Tracks
         </div>
       </div>
-    </div>
+    </PanelHeader>
   )
 }
