@@ -40,6 +40,11 @@
       @include spacing()
     }
 
+    & img {
+      height: 30px;
+      width: 30px;
+    }
+
     & .data-row:not(:last-child) {
       border-bottom: solid 1px #ccc;
     }

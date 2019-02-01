@@ -14,6 +14,8 @@ export const Search_QUERY = gql`
     search(q: $q) {
       title
       thumb
+      length
+      streamUrl
     }
   }
 `

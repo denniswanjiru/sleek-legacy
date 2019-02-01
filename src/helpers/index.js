@@ -1,7 +1,7 @@
 const cleanup = dirty => {
   const semiDirty = dirty && dirty.split('(')[0].trim()
    const clean = semiDirty && semiDirty.split('[')[0].trim();
-  return clean && (clean.length > 30 ? clean.substr(0, 30) + '...' : clean);
+  return clean && (clean.length > 30 ? clean.substr(0, 20) + '...' : clean);
 }
 
 export const getTrack = title => {

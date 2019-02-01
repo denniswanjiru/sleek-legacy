@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Query } from 'react-apollo';
 import { Search_QUERY } from '../../queries';
 import TracksTable from '../TracksTable';
