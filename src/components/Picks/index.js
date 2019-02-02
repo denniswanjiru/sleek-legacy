@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PanelHeader from '../HOC/PanelHeader';
 
 export default function Picks() {

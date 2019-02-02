@@ -22,6 +22,7 @@ const Player = ({ context }) => {
   }
 
   useEffect(() => {
+    setStream("")
     streamUrl && fetch(`http://localhost:5000/${streamUrl}`)
     .then(res => res.json())
     .then((data) => setStream(data))
@@ -121,7 +122,7 @@ const Player = ({ context }) => {
           <img src={shuffle} alt="" className="icon" />
           <img src={prev} alt="" className="icon" onClick={handlePrev} />
           <div className="play icon" onClick={context.togglePlaying}>
-            <img src={context.playing ? pause : play} alt="" className="play--icon" />
+            <img src={context.playing ? pause : play} alt="" className="play--icon" disabled />
           </div>
           <img src={next} alt="" className="icon"  onClick={songEnd} />
           <img src={repeat} alt="" className="icon" />

@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './index.scss';
 import { getTrack } from '../../helpers';
+import withAppContext from '../Contexts/withAppContext';
 
-export default function TracksTable({ track }) {
-  const [play, setPlay] = useState(false);
+function TracksTable({ track, context, handleClick})  {
   const [artist, song] = getTrack(track.title);
-
-  const hover = () => {
-
-  }
-
   return (
-    <div className="data-row">
+    <div className="data-row" onClick={handleClick}>
       <div className="small">
         <p>Play</p>
         <img src={track.thumb} alt=""/>
@@ -24,3 +19,5 @@ export default function TracksTable({ track }) {
     </div>
   )
 }
+
+export default withAppContext(TracksTable)

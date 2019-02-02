@@ -13,10 +13,9 @@ export default function PlayerContext({children}) {
 
   useEffect(() => {
     if(playlist.name){
-      togglePlaying();
-      const name = localStorage.getItem('playlist')
+      playlist.name !== 'search' && togglePlaying();
+      localStorage.getItem('playlist')
       if(!playing) {
-        console.log(playlist)
         localStorage.setItem('playlist', playlist.name)
         triggerPlaylist()
       }
@@ -32,12 +31,20 @@ export default function PlayerContext({children}) {
   }, [np]);
 
   useEffect(() => {
-    console.log(search)
-  }, [search])
+    const query = localStorage.getItem('query');
+    query && setSearch(query);
+
+    return () => {
+      searchSongs.cancel();
+    }
+  }, [])
 
   // Search
   const searchSongs = debounce(query => {
-    setSearch(query);
+    if(query) {
+      localStorage.setItem('query', query);
+      setSearch(query);
+    }
   }, 1000);
 
   const updatePlaylist = (playlist) => {
@@ -53,8 +60,14 @@ export default function PlayerContext({children}) {
   }
 
   const triggerPlaylist = () => {
-    setPlaying(true)
-    setCurrent(playlist.tracks[0]);
+    setPlaying(true);
+    if(playlist.name === 'search') {
+      const currentNp = playlist.tracks && playlist.tracks.findIndex(track => track.id === current.id);
+      setNp(currentNp)
+      setCurrent(current);
+    } else {
+      setCurrent(playlist.tracks[0]);
+    }
   }
 
   const handlePlaying = playing => {

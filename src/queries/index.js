@@ -12,6 +12,7 @@ export const FLOW_QUERY = gql`
 export const SEARCH_QUERY = gql`
   query searchQuery($q: String) {
     search(q: $q) {
+      id
       title
       thumb
       length
