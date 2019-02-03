@@ -5,6 +5,7 @@ export const { Provider, Consumer } = React.createContext();
 
 export default function PlayerContext({children}) {
   const [np , setNp] = useState(0);
+  const [lyric, setLyric] = useState(false);
   const [search, setSearch] = useState(null);
   const [current, setCurrent] = useState({});
   const [playlist, setPlayList] = useState([]);
@@ -31,9 +32,6 @@ export default function PlayerContext({children}) {
   }, [np]);
 
   useEffect(() => {
-    const query = localStorage.getItem('query');
-    query && setSearch(query);
-
     return () => {
       searchSongs.cancel();
     }
@@ -58,6 +56,8 @@ export default function PlayerContext({children}) {
   const togglePlaying = () => {
     setPlaying(!playing)
   }
+
+  const toggleLyrics = () => setLyric(!lyric);
 
   const triggerPlaylist = () => {
     setPlaying(true);
@@ -86,18 +86,20 @@ export default function PlayerContext({children}) {
   }
 
   const context = {
-    current,
-    search,
-    searchSongs,
     np,
-    playlist,
-    playing,
+    lyric,
     queue,
-    updateCurrent,
-    updatePlaylist,
+    search,
+    current,
+    playing,
+    playlist,
     playNext,
     playPrev,
-    togglePlaying
+    searchSongs,
+    toggleLyrics,
+    togglePlaying,
+    updateCurrent,
+    updatePlaylist
   };
 
   return (

@@ -1,10 +1,12 @@
 import React from 'react';
 import './index.scss';
 
-export default function Explore() {
+ const Explore = () => {
   return (
-    <div class="page-wrapper">
+    <div className="page-wrapper">
       <h1>Explore</h1>
     </div>
   )
 }
+
+export default Explore;

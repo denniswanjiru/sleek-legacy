@@ -10,10 +10,11 @@ import mix from "../../assets/icons/mix.svg";
 import volume from "../../assets/icons/volume.svg";
 import plus from "../../assets/icons/plus.svg";
 import pause from "../../assets/icons/pause.svg";
+import Lyrics from '../Lyrics';
 import './index.scss';
 
 const Player = ({ context }) => {
-  const {title, thumb, streamUrl} = context.current;
+  const {title, thumb, streamUrl, lyrics} = context.current;
   const [stream, setStream] = useState("");
 
   let artist, song;
@@ -26,6 +27,8 @@ const Player = ({ context }) => {
     streamUrl && fetch(`http://localhost:5000/${streamUrl}`)
     .then(res => res.json())
     .then((data) => setStream(data))
+
+    console.log(lyrics)
   }, [context.current])
 
   useEffect(() => {
@@ -51,12 +54,12 @@ const Player = ({ context }) => {
   const progressBar = () => {
     const player = document.getElementById("audio")
 
-    const length = player.duration
+    const rlength = player.duration
 
     const current_time = player.currentTime;
 
     // calculate total length of value
-    const totalLength = calculateTotalValue(length)
+    const totalLength = calculateTotalValue(rlength)
     document.getElementById("end-time").innerHTML = totalLength;
     // calculate current value time
     const currentTime = calculateCurrentValue(current_time);
@@ -119,7 +122,7 @@ const Player = ({ context }) => {
       </div>
       <div className="sleek--player">
         <div className="controls">
-          <img src={shuffle} alt="" className="icon" />
+          <img src={shuffle} alt="" className="icon" onClick={() => context.toggleLyrics()} />
           <img src={prev} alt="" className="icon" onClick={handlePrev} />
           <div className="play icon" onClick={context.togglePlaying}>
             <img src={context.playing ? pause : play} alt="" className="play--icon" disabled />

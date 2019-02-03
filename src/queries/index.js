@@ -2,11 +2,14 @@ import gql from 'graphql-tag';
 
 export const FLOW_QUERY = gql`
   query flowQuery($filter: String!) {
-    tracks(filter: $filter, limit: 80) {
+    tracks(filter: $filter, limit: 10) {
+      id
       title
-      streamUrl
       thumb
-  }
+      length
+      trackId
+      streamUrl
+    }
   }`;
 
 export const SEARCH_QUERY = gql`
@@ -16,7 +19,16 @@ export const SEARCH_QUERY = gql`
       title
       thumb
       length
+      trackId
       streamUrl
+    }
+  }
+`
+
+export const LYRICS_QUERY = gql`
+  query lyricsQuery($track: String) {
+    lyrics(track: $track) {
+      lyrics
     }
   }
 `
