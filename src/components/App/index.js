@@ -22,7 +22,7 @@ export default function App() {
           <Consumer>
             {(context) => (
               <React.Fragment>
-                <div className="page-wrapper">
+                <div className={`page-wrapper ${context.lyric ? 'fixed' : ''}`}>
                   <div className="content">
                     <Nav context={context} />
                     <main className="main">

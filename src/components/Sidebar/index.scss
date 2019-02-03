@@ -44,7 +44,7 @@
   position: absolute;
   width: 100%;
   top: 0;
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
   transition: all 1s;
   background-color: #fff;
@@ -60,5 +60,10 @@
   &.close {
     top: 100vh;
     height: 0;
+    opacity: 0;
   }
+}
+
+.fixed {
+  position: fixed!important;
 }

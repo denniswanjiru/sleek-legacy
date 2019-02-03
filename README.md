@@ -9,13 +9,6 @@
 - React Context
 - Scss
 
-### Backend
-- Python
-- Redis
-- GraphQL
-- Python-graphine
-- Flask
-
 # Contributing
 ### Frontnend
 - Fork this repo and start you contribution

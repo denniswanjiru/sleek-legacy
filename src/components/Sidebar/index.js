@@ -18,8 +18,8 @@ const Sidebar = ({ context }) => (
         <li><NavLink to='/explore'>Albums</NavLink></li>
       </ul>
     </aside>
-    <div className={context.lyric ? 'slider' : 'slider close'}>
-      <Lyrics />
+    <div className={context.lyric ? 'slider' : 'slider close hide'}>
+      <div className="lyx"><Lyrics /></div>
     </div>
   </React.Fragment>
 );
