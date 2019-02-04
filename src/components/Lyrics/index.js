@@ -14,7 +14,7 @@ const Lyrics = ({ context }) => {
         {({ data, loading, error }) => {
           if (loading) return <p className="is-size-6">Loading...</p>
           if (error) return <p className="is-size-7">Something went wrong. Try again later!</p>
-          return <p className="lyrics">{data.lyrics.lyrics}</p>
+          return <div className="lyrics" dangerouslySetInnerHTML={{ __html: data.lyrics.lyrics }} />
         }}
       </Query>}
     </Fragment>
